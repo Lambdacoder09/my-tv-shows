@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { type FC } from "react";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
