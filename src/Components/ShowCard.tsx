@@ -1,34 +1,48 @@
-import {  Link } from "react-router-dom";
+import { FC } from "react";
+import { Link } from "react-router-dom";
+import Show from "./../models/Shows";
 
-function ShowCard() {
+const placeholder = "https://images.pexels.com/photos/29243214/pexels-photo-29243214.jpeg";
+
+interface Showcard {
+  show: Show;
+}
+
+const stripHtml = (value?: string | null) =>
+  (value || "").replace(/<[^>]*>/g, "").trim();
+
+const ShowCard: FC<Showcard> = ({ show }) => {
+  const summary = stripHtml(show.summary) || "No summary available.";
+  const showName = show.name || "Untitled show";
+
   return (
-    <div className="max-w-xs rounded-md shadow-md p-2 m-1">
+    <article className="w-full max-w-xs overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
       <img
-        src="https://static.tvmaze.com/uploads/images/medium_portrait/423/1058422.jpg"
-        alt=""
-        className="object-cover object-center w-full rounded-t-md h-72"
+        src={show.image?.medium || placeholder}
+        alt={showName}
+        className="h-72 w-full object-cover object-center"
       />
-      <div className="flex flex-col justify-between p-6 space-y-8">
+
+      <div className="flex min-h-[260px] flex-col justify-between p-6 space-y-4">
         <div className="space-y-2">
-          <h2 className="text-3xl font-semibold tracking-wide">The Witcher</h2>
-          <p>
-            Based on the best-selling fantasy series, The Witcher is an epic
-            tale of fate and family. Geralt of Rivia, a solitary monster hunter,
-            struggles to find his place in a world where people often prove more
-            wicked than beasts. But when destiny hurtles him toward a powerful
-            sorceress, and a young princess with a dangerous secret, the three
-            must learn to navigate the increasingly volatile Continent together.
+          <h2 className="text-xl font-semibold tracking-tight text-slate-900">
+            {showName}
+          </h2>
+
+          <p className="h-24 overflow-hidden text-sm leading-6 text-slate-600">
+            {summary}
           </p>
         </div>
+
         <Link
-          to="/show/1"
-          className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md"
+          to={`/show/${show.id}`}
+          className="flex w-full items-center justify-center rounded-xl bg-blue-600 p-3 font-semibold tracking-wide text-white transition hover:bg-blue-700"
         >
           View Details
         </Link>
       </div>
-    </div>
+    </article>
   );
-}
+};
 
 export default ShowCard;

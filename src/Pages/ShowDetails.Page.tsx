@@ -2,6 +2,8 @@ import { type FC } from "react";
 import CastCard from "../Components/CastCard";
 import GenrePill from "../Components/GenrePill";
 import withRouter, { WithRouterProps } from "../hocs/withRouter";
+import { HiOutlineBackspace } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 type ShowDetailPageProps = WithRouterProps;
 
@@ -9,6 +11,9 @@ const ShowDetailPage: FC<WithRouterProps> = ({ params }) => {
   console.log(params);
   return (
     <div className="mt-2">
+      <Link to="/" className="text-2xl text-blue-500">
+  <HiOutlineBackspace />
+</Link>
       <h2 className="text-4xl font-semibold tracking-wide">The Witcher</h2>
       <div className="flex space-x-3 my-2 bg-gray-300 p-2 rounded-sm">
         <GenrePill name="Action" />

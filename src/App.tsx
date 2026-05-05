@@ -4,12 +4,14 @@ import ShowListPage from "./Pages/ShowsList.Page";
 
 function App() {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-slate-100 text-slate-900">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ShowListPage />} />
-          <Route path="show/:show_id" element={<ShowDetailPage />} />
-        </Routes>
+        <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <Routes>
+            <Route path="/" element={<ShowListPage />} />
+            <Route path="show/:show_id" element={<ShowDetailPage />} />
+          </Routes>
+        </main>
       </BrowserRouter>
     </div>
   );
